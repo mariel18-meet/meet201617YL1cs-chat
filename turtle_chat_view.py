@@ -24,8 +24,10 @@ class TextBox(TextInput):
         turtle.pendown()
         turtle.goto(self.width,0)
         turtle.goto(self.width,self.height)
-        turtle.goto(0,self.height)
-        turtle.goto(0,-self.height)
+        turtle.goto(-self.width,self.height)
+        turtle.goto(-self.width,0)
+        turtle.goto(self.pos)
+        turtle.hideturtle()
     def write_msg(self):
         print("hey")
         

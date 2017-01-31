@@ -20,20 +20,18 @@ from turtle_chat_widgets import TextInput
 #Make a class called TextBox, which will be a subclass of TextInput.
 class TextBox(TextInput):
     def draw_box(self):
-        turtle.penup()
-        turtle.goto(self.pos)
-        turtle.pendown()
-        turtle.goto(self.width,0)
-        turtle.goto(self.width,self.height)
-        turtle.goto(-self.width,self.height)
-        turtle.goto(-self.width,0)
-        turtle.goto(self.pos)
-        turtle.hideturtle()
+        self.draw=turtle.clone()
+        self .draw.hideturtle()
+        self.draw.penup()
+        self.draw.goto(self.width/2,0)
+        self.draw.pendown()
+        self.draw.goto(-self.width/2,0)
+        self.draw.goto(-self.width/2,-self.height)
+        self.draw.goto(self.width/2,-self.height)
+        self.draw.goto(self.width/2,0)
     def write_msg(self):
-        self.setup_listeners()
-        print(self.new_msg)
+        self.writer.clear()
         self.writer.write(self.new_msg)
-        #self.writer.clear()
         
 #Because TextInput is an abstract class, you must implement its abstract
 #methods.  There are two:
@@ -64,6 +62,8 @@ class TextBox(TextInput):
 #####################################################################################
 #                                  SendButton                                       #
 #####################################################################################
+class SendButton(Button):
+    pass
 #Make a class called SendButton, which will be a subclass of Button.
 #Button is an abstract class with one abstract method: fun.
 #fun gets called whenever the button is clicked.  It's jobs will be to

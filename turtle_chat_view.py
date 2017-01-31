@@ -29,7 +29,10 @@ class TextBox(TextInput):
         turtle.goto(self.pos)
         turtle.hideturtle()
     def write_msg(self):
-        print("hey")
+        self.setup_listeners()
+        print(self.new_msg)
+        self.writer.write(self.new_msg)
+        #self.writer.clear()
         
 #Because TextInput is an abstract class, you must implement its abstract
 #methods.  There are two:
@@ -46,7 +49,9 @@ class TextBox(TextInput):
 #
 #   self.writer.write(a_string_variable)
 #
-#   and you can erase that text using
+#   and you can erase that text usingturtle_chat_widgets&
+
+
 #
 #   self.writer.clear()
 #

@@ -63,7 +63,13 @@ class TextBox(TextInput):
 #                                  SendButton                                       #
 #####################################################################################
 class SendButton(Button):
-    pass
+##    from turtle_chat_client.py import send
+    def __init__(self,my_turtle=None,shape=None,pos=(0,0),view=None):
+        super(SendButton,self).__init__(my_turtle=None,shape=None,pos=(0,0))
+        self.view=view
+    def fun(self,x=None,y=None):
+        self.view.send_msg()          
+    
 #Make a class called SendButton, which will be a subclass of Button.
 #Button is an abstract class with one abstract method: fun.
 #fun gets called whenever the button is clicked.  It's jobs will be to
@@ -96,6 +102,10 @@ class View:
     _LINE_SPACING=round(_SCREEN_HEIGHT/2/(_MSG_LOG_LENGTH+1))
 
     def __init__(self,username='Me',partner_name='Partner'):
+        self.username=username
+        self.partner_name=partner_name
+        self.my_client=Client()
+        turtle.setup(width=self._SCREEN_WIDTH, height=self._SCREEN_HEIGHT)
         '''
         :param username: the name of this chat user
         :param partner_name: the name of the user you are chatting with
@@ -121,13 +131,20 @@ class View:
         #or at the end of the list using
         #   self.msg_queue.append(a_msg_string)
         self.msg_queue=[]
-
+        me=turtle.clone()
+        me.penup()
+        me.goto(-170,-100)
+        partner=turtle.clone()
+        partner.penup()
+        partner.goto(-170,-100)
+        
         ###
         #Create one turtle object for each message to display.
         #You can use the clear() and write() methods to erase
         #and write messages for each
         ###
-
+        TB=TextBox()
+        SM=SendButton()
         ###
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance

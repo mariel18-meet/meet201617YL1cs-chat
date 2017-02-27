@@ -17,6 +17,8 @@ from turtle_chat_widgets import Button
 #                                   TextBox
 from turtle_chat_widgets import TextInput
 #####################################################################################
+lol=turtle.Screen()
+lol.bgpic("/home/student/Downloads/b6a06f33e16b09368ac810b42a2b57f5.gif")
 #Make a class called TextBox, which will be a subclass of TextInput.
 class TextBox(TextInput):
     def draw_box(self):
@@ -28,7 +30,8 @@ class TextBox(TextInput):
         self.draw.goto(-self.width/2,-self.height)
         self.draw.goto(self.width/2,-self.height)
         self.draw.goto(self.width/2,0)
-        self .draw.hideturtle()
+        self.draw.hideturtle()
+        
 
        
     def write_msg(self):
@@ -68,6 +71,7 @@ class SendButton(Button):
 ##    from turtle_chat_client.py import send
     def __init__(self,my_turtle=None,shape=None,pos=(0,0),view=None):
         super(SendButton,self).__init__(my_turtle=None,shape=None,pos=(0,-150))
+        self.turtle.color('yellow')
         self.view=view
     def fun(self,x=None,y=None):
         self.view.send_msg()          
@@ -135,13 +139,13 @@ class View:
         self.msg_queue=[]
         self.me=turtle.clone()
         self.me.penup()
-        self.me.goto(-170,-100)
-##        partner=turtle.clone()
-##        partner.penup()
-##        partner.goto(-170,-150)
-        
-        ###
-        #Create one turtle object for each message to display.
+        self.me.goto(-170,100)
+        partner=turtle.clone()
+        partner.penup()
+        partner.goto(170,150)
+##        
+##        ###
+##        #Create one turtle object for each message to display.
         #You can use the clear() and write() methods to erase
         #and write messages for each
         ###
@@ -209,7 +213,7 @@ class View:
         '''
         print(msg) #Debug - print message
         show_this_msg=self.partner_name+' says:\r'+ msg
-        self.msg_queue.insert(0,msg)
+        self.msg_queue.insert(0,show_this_msg)
         self.display_msg()
         #Add the message to the queue either using insert (to put at the beginning)
         #or append (to put at the end).
@@ -222,8 +226,13 @@ class View:
         '''
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
-        '''
         
+        '''
+      
+##    def background(self):
+##        turtle.register_shape("/home/student/Downloads/b6a06f33e16b09368ac810b42a2b57f5.gif")
+##        self.clone=turtle.clone()
+##        self.clone.shape("/home/student/Downloads/b6a06f33e16b09368ac810b42a2b57f5.gif")
 ##############################################################
 ##############################################################
 
